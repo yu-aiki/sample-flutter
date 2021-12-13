@@ -94,25 +94,94 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Text("row1"),
+                        const Text("row2"),
+                        TextButton(
+                            onPressed: () {
+                              //do something
+                            },
+                            style: TextButton.styleFrom(primary: Colors.red),
+                            child: const Text("text button")),
+                        OutlinedButton(
+                          onPressed: () {},
+                          style:
+                              OutlinedButton.styleFrom(primary: Colors.green),
+                          child: const Text("outlined button"),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.yellow, elevation: 20),
+                            child: const Text("Elevated button")),
+                      ]),
+                  const Text("text"),
+                  const TextButton(onPressed: null, child: Text("disabled")),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.thumb_up),
+                    color: Colors.pink,
+                    iconSize: 64,
+                  ),
+                  TextButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.thumb_up),
+                    label: const Text("good")
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.favorite),
+                    label: const Text("Like")
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.flight),
+                    label: const Text("flight")
+                  )
+                ]),
             const Text(
               'You have pushed the button this many times:',
             ),
             const Text(
               'You have pushed the button this many times:',
             ),
-            const Text(
-              'bold', style: TextStyle(fontWeight: FontWeight.bold)
-            ),
-            const Text(
-              'Italic', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 36, color: Colors.blue)
+            const Text('bold', style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text('Italic',
+                style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 36,
+                    color: Colors.blue)),
+            Container(
+                width: double.infinity,
+                color: Colors.amberAccent,
+                child: const Text('align', textAlign: TextAlign.end)),
+            Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: NetworkImage("https://placehold.jp/200x100.png"))),
+              child: const Text("image"),
             ),
             Container(
-              width: double.infinity,
-              color: Colors.amberAccent,
-              child: const Text('align', textAlign: TextAlign.end)
-            ),
+                width: 200,
+                height: 30,
+                padding: EdgeInsets.all(4),
+                margin: EdgeInsets.all(4),
+                color: Colors.green,
+                child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.blue, width: 2),
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white),
+                    child: const Text("box"))),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
@@ -122,6 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
+        backgroundColor: Colors.red,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
