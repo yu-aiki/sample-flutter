@@ -98,8 +98,20 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Text(
               'You have pushed the button this many times:',
-            ),const Text(
+            ),
+            const Text(
               'You have pushed the button this many times:',
+            ),
+            const Text(
+              'bold', style: TextStyle(fontWeight: FontWeight.bold)
+            ),
+            const Text(
+              'Italic', style: TextStyle(fontStyle: FontStyle.italic, fontSize: 36, color: Colors.blue)
+            ),
+            Container(
+              width: double.infinity,
+              color: Colors.amberAccent,
+              child: const Text('align', textAlign: TextAlign.end)
             ),
             Text(
               '$_counter',
