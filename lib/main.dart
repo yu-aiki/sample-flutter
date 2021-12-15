@@ -30,55 +30,48 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ToDoListPage extends StatelessWidget {
+class ToDoListPage extends StatefulWidget {
+
+  @override
+  _ToDoListState createState() {
+    return _ToDoListState();
+  }
+}
+
+class _ToDoListState extends State<ToDoListPage> {
+
+  List<String> todoList = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("リスト一覧")
+          title: Text("リスト一覧")
       ),
-      body: ListView(
-        children: <Widget>[
-          Card(
-            child: ListTile(
-              title: Text("にんじんを買う"),
-              subtitle: Text("明日まで"),
-            ),
+      body: ListView.builder(
+        itemCount: todoList.length,
+          itemBuilder: (context, index) {
+        return Card(
+          child: ListTile(
+            title: Text(todoList[index]),
           ),
-          Card(
-            child: ListTile(
-              title: Text("にんじんを買う"),
-              subtitle: Text("明日まで"),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("にんじんを買う"),
-              subtitle: Text("明日まで"),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text("にんじんを買う"),
-              subtitle: Text("明日まで"),
-            ),
-          ),
-        ],
-      ),
+        );
+      }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final newListText = await Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) {
-              return ToDoAddPage();
-            })
-          );
-          developer.log("text=$newListText");
-          if (newListText != null) {
-            //do something
-          }
-        },
-        child: Icon(Icons.add)
+          onPressed: () async {
+            final newListText = await Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) {
+                  return ToDoAddPage();
+                })
+            );
+            developer.log("text=$newListText");
+            if (newListText != null) {
+              setState(() {
+                todoList.add(newListText);
+              });
+            }
+          },
+          child: Icon(Icons.add)
       ),
     );
   }
