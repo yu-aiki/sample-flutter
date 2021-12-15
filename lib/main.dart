@@ -79,47 +79,69 @@ class ToDoListPage extends StatelessWidget {
   }
 }
 
-class ToDoAddPage extends StatelessWidget {
+class ToDoAddPage extends StatefulWidget {
+  @override
+  _ToDoAddPageState createState() {
+    return _ToDoAddPageState();
+  }
+}
+
+class _ToDoAddPageState extends State<ToDoAddPage> {
+
+  String _text = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("リスト追加"),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.all(30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextField(),
-              const SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text("追加")
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                child:TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text("キャンセル")
-                )
-              ),
-            ],
+        appBar: AppBar(
+          title: Text("リスト追加"),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
         ),
-      )
+        body: Center(
+          child: Container(
+            margin: EdgeInsets.all(30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  _text,
+                  style: TextStyle(
+                    color: Colors.red,
+                  )
+                ),
+                TextField(
+                  onChanged: (String value) {
+                    setState(() {
+                      _text = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text("追加")
+                  ),
+                ),
+                Container(
+                    width: double.infinity,
+                    child:TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("キャンセル")
+                    )
+                ),
+              ],
+            ),
+          ),
+        )
     );
   }
 }
