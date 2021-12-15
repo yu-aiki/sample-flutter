@@ -83,13 +83,42 @@ class ToDoAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: TextButton(
+      appBar: AppBar(
+        title: Text("リスト追加"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text("戻る")
-        )
+        ),
+      ),
+      body: Center(
+        child: Container(
+          margin: EdgeInsets.all(30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(),
+              const SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text("追加")
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                child:TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("キャンセル")
+                )
+              ),
+            ],
+          ),
+        ),
       )
     );
   }
