@@ -50,6 +50,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  final listItems = [
+    'item 1',
+    'item 2',
+    'item 3',
+  ];
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -72,14 +78,33 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(Icons.arrow_back),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        actions: <Widget> [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.favorite),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert),
+          ),
+        ]
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+        child: ListView(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -94,13 +119,21 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
+                  Container(
+                    height: 50,
+                    child: ListView.builder(
+                        itemCount: listItems.length,
+                        itemBuilder: (context, index) {
+                          return Text(listItems[index]);
+                        }),
+                  ),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -115,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         OutlinedButton(
                           onPressed: () {},
                           style:
-                              OutlinedButton.styleFrom(primary: Colors.green),
+                          OutlinedButton.styleFrom(primary: Colors.green),
                           child: const Text("outlined button"),
                         ),
                         ElevatedButton(
@@ -133,21 +166,50 @@ class _MyHomePageState extends State<MyHomePage> {
                     iconSize: 64,
                   ),
                   TextButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.thumb_up),
-                    label: const Text("good")
-                  ),
+                      onPressed: () {},
+                      icon: const Icon(Icons.thumb_up),
+                      label: const Text("good")),
                   OutlinedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.favorite),
-                    label: const Text("Like")
-                  ),
+                      onPressed: () {},
+                      icon: const Icon(Icons.favorite),
+                      label: const Text("Like")),
                   ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.flight),
-                    label: const Text("flight")
-                  )
+                      onPressed: () {},
+                      icon: const Icon(Icons.flight),
+                      label: const Text("flight"))
                 ]),
+
+            ListTile(
+              leading: Image.network("https://placehold.jp/50x50.png"),
+              title: Text("list tile"),
+              subtitle: Text("sub title"),
+              trailing: Icon(Icons.more_vert),
+            ),
+            Card(
+                child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text("card")
+                )
+            ),
+            Container(
+              height: 300,
+              child: ListView.builder(
+                  itemCount: listItems.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                        margin: EdgeInsets.all(10),
+                        child: Card(
+                          child: ListTile(
+                            leading: Image.network("https://placehold.jp/50x50.png"),
+                            title: Text(listItems[index]),
+                            subtitle: Text("sub"),
+                            trailing: Icon(Icons.favorite),
+                          ),
+                        )
+                    );
+                  }),
+            ),
+
             const Text(
               'You have pushed the button this many times:',
             ),
@@ -184,7 +246,31 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Text("box"))),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
+            ),
+            Text(
+              '$_counter',
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
+            ),
+            Text(
+              '$_counter',
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
+            ),
+            Text(
+              '$_counter',
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
             ),
           ],
         ),
