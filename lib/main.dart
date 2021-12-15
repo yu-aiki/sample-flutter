@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
 
 void main() {
   runApp(const MyApp());
@@ -66,12 +67,16 @@ class ToDoListPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
+        onPressed: () async {
+          final newListText = await Navigator.of(context).push(
             MaterialPageRoute(builder: (context) {
               return ToDoAddPage();
             })
           );
+          developer.log("text=$newListText");
+          if (newListText != null) {
+            //do something
+          }
         },
         child: Icon(Icons.add)
       ),
@@ -125,7 +130,9 @@ class _ToDoAddPageState extends State<ToDoAddPage> {
                 Container(
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pop(_text);
+                      },
                       child: Text("追加")
                   ),
                 ),
