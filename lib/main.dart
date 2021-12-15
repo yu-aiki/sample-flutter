@@ -24,7 +24,45 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ToDoListPage(),
+    );
+  }
+}
+
+class ToDoListPage extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text("リスト一覧画面")
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) {
+              return ToDoAddPage();
+            })
+          );
+        },
+        child: Icon(Icons.add)
+      ),
+    );
+  }
+}
+
+class ToDoAddPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text("戻る")
+        )
+      )
     );
   }
 }
